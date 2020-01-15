@@ -10,7 +10,7 @@ export default class Form extends React.Component{
             <Features 
             selected={this.props.selected} 
             features={this.props.features} 
-            updateFeature={this.updateFeature} />
+            updateFeature={this.props.updateFeature} />
         </form>
         )
     }
