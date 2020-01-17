@@ -1,4 +1,6 @@
 import React from 'react';
+import SummaryOption from './SummaryOption'
+import SummaryTotal from './SummaryTotal'
 import "./Cart.css"
 
 
@@ -15,13 +17,9 @@ export default class Cart extends React.Component{
             const selectedOption = this.props.selected[feature];
       
             return (
-              <div className="summary__option" key={featureHash}>
-                <div className="summary__option__label">{feature} </div>
-                <div className="summary__option__value">{selectedOption.name}</div>
-                <div className="summary__option__cost">
-                  {USCurrencyFormat.format(selectedOption.cost)}
-                </div>
-              </div>
+             <SummaryOption 
+              key={[idx]}
+              feature={feature} featureHash={featureHash} selectedOption={selectedOption}/>
             );
           });
           const total = Object.keys(this.props.selected).reduce(
@@ -32,12 +30,8 @@ export default class Cart extends React.Component{
             <section className="main__summary">
                 <h2>Your cart</h2>
                 {summary}
-                <div className="summary__total">
-                <div className="summary__total__label">Total</div>
-                <div className="summary__total__value">
-                    {USCurrencyFormat.format(total)}
-                </div>
-                </div>
+                
+                <SummaryTotal USCurrencyFormat={USCurrencyFormat} total={total}/>
             </section>
         )
     }
